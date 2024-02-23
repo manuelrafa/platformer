@@ -5,7 +5,7 @@ class Entity {
     protected y: number = 0;
 
     constructor() {
-        window.requestAnimationFrame(this.staticLoop);
+        window.requestAnimationFrame(this.staticLoop.bind(this));
     }
 
     private staticStart() {
@@ -16,7 +16,7 @@ class Entity {
         if (this.alive) {
             this.loop();
         }
-        window.requestAnimationFrame(this.staticLoop);
+        window.requestAnimationFrame(this.staticLoop.bind(this));
     }
 
     /**
@@ -32,13 +32,16 @@ class Entity {
      */
     protected loop(): void {}
 
-    /* protected move(x, y) {
-        this.x += Math.round(x * globalThis.deltaTime);
-        this.y += Math.round(y * globalThis.deltaTime);
-    } */
+    protected move(x: number, y: number) {
+        this.x += Math.round(x * Time.deltaTime);
+        this.y += Math.round(y * Time.deltaTime);
+        
+    }
 
     protected kill(): void {
         if (this.alive) this.alive = false;
     }
 
 }
+
+const a = new Entity();

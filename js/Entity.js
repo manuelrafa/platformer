@@ -5,7 +5,7 @@ class Entity {
         this.alive = true;
         this.x = 0;
         this.y = 0;
-        window.requestAnimationFrame(this.staticLoop);
+        window.requestAnimationFrame(this.staticLoop.bind(this));
     }
     staticStart() {
         this.alive = true;
@@ -14,7 +14,7 @@ class Entity {
         if (this.alive) {
             this.loop();
         }
-        window.requestAnimationFrame(this.staticLoop);
+        window.requestAnimationFrame(this.staticLoop.bind(this));
     }
     /**
      * @override
@@ -28,12 +28,13 @@ class Entity {
      * LLamado en cada frame.
      */
     loop() { }
-    /* protected move(x, y) {
-        this.x += Math.round(x * globalThis.deltaTime);
-        this.y += Math.round(y * globalThis.deltaTime);
-    } */
+    move(x, y) {
+        this.x += Math.round(x * Time.deltaTime);
+        this.y += Math.round(y * Time.deltaTime);
+    }
     kill() {
         if (this.alive)
             this.alive = false;
     }
 }
+const a = new Entity();
