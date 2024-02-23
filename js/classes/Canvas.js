@@ -1,11 +1,16 @@
 "use strict";
 class Canvas {
-    constructor(html) {
+    constructor(html, size = null) {
+        this.size = new Vector2(640, 360);
         this.html = html;
         this.context = html.getContext('2d');
+        if (size != null) {
+            this.size = size;
+            html.width = size.x;
+            html.height = size.y;
+        }
     }
     draw(img, x, y) {
-        var _a;
-        (_a = this.context) === null || _a === void 0 ? void 0 : _a.drawImage(img, x, y);
+        this.context.drawImage(img, x, y);
     }
 }

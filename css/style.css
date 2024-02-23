@@ -8,8 +8,13 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-canvas {
+canvas#main_canvas {
+    position: fixed;
     image-rendering: pixelated;
+    border: 1px solid black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     /* transform: scale(4); */
 }
 
