@@ -31,10 +31,9 @@ class Entity {
      */
     protected loop(): void {}
 
-    protected move(x: number, y: number) {
-        this.position.x += Math.round(x * Time.deltaTime);
-        this.position.y += Math.round(y * Time.deltaTime);
-        
+    protected move(movement: Vector2) {
+        this.position.x += Math.round(movement.x * Time.deltaTime);
+        this.position.y += Math.round(movement.y * Time.deltaTime);
     }
 
     protected kill(): void {

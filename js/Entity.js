@@ -27,9 +27,9 @@ class Entity {
      * LLamado en cada frame.
      */
     loop() { }
-    move(x, y) {
-        this.position.x += Math.round(x * Time.deltaTime);
-        this.position.y += Math.round(y * Time.deltaTime);
+    move(movement) {
+        this.position.x += Math.round(movement.x * Time.deltaTime);
+        this.position.y += Math.round(movement.y * Time.deltaTime);
     }
     kill() {
         if (this.alive)
