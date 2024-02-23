@@ -1,8 +1,7 @@
 class Entity {
     protected sprite: HTMLImageElement | null = null;
     protected alive: boolean = true;
-    protected x: number = 0;
-    protected y: number = 0;
+    protected position: Vector2 = new Vector2();
 
     constructor() {
         window.requestAnimationFrame(this.staticLoop.bind(this));
@@ -33,8 +32,8 @@ class Entity {
     protected loop(): void {}
 
     protected move(x: number, y: number) {
-        this.x += Math.round(x * Time.deltaTime);
-        this.y += Math.round(y * Time.deltaTime);
+        this.position.x += Math.round(x * Time.deltaTime);
+        this.position.y += Math.round(y * Time.deltaTime);
         
     }
 
