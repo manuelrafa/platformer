@@ -10,7 +10,7 @@ body {
 }
 canvas {
     image-rendering: pixelated;
-    transform: scale(4);
+    /* transform: scale(4); */
 }
 
 

@@ -1,39 +1,44 @@
-"use strict";
 class Entity {
+    protected sprite: HTMLImageElement | null = null;
+    protected alive: boolean = true;
+    protected x: number = 0;
+    protected y: number = 0;
+
     constructor() {
-        this.sprite = null;
-        this.alive = true;
-        this.x = 0;
-        this.y = 0;
         window.requestAnimationFrame(this.staticLoop);
     }
-    staticStart() {
+
+    private staticStart() {
         this.alive = true;
     }
-    staticLoop() {
+
+    private staticLoop() {
         if (this.alive) {
             this.loop();
         }
         window.requestAnimationFrame(this.staticLoop);
     }
+
     /**
      * @override
      * LLamado para inicializar la entidad.
      */
-    start() {
+    protected start(): void {
         this.staticStart();
     }
     /**
      * @override
      * LLamado en cada frame.
      */
-    loop() { }
+    protected loop(): void {}
+
     /* protected move(x, y) {
         this.x += Math.round(x * globalThis.deltaTime);
         this.y += Math.round(y * globalThis.deltaTime);
     } */
-    kill() {
-        if (this.alive)
-            this.alive = false;
+
+    protected kill(): void {
+        if (this.alive) this.alive = false;
     }
+
 }
