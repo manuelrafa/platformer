@@ -1,14 +1,13 @@
-"use strict";
 class Player extends Entity {
-    constructor() {
-        super(...arguments);
-        this.movDirection = new Vector2();
-        this.speed = 150;
-    }
-    loop() {
+    private movDirection = new Vector2();
+    private speed: number = 150;
+
+
+    protected loop(): void {
         this.handleMovement();
     }
-    handleMovement() {
+
+    private handleMovement() {
         if (Input.isActionPressed('left')) {
             this.movDirection.x = -1;
         }
@@ -18,6 +17,7 @@ class Player extends Entity {
         else {
             this.movDirection.x = 0;
         }
+
         this.move(Vector2.mul(this.movDirection, this.speed));
     }
 }
