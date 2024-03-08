@@ -39,7 +39,6 @@ const Input = new class Input {
         return this.pressedKeys.get(keycode);
     }
     keyDown(e) {
-        e.preventDefault();
         this.pressedKeys.set(e.code, true);
         for (const action in this.actions) {
             if (this.actions[action].hasKey(e.code)) {
@@ -48,7 +47,6 @@ const Input = new class Input {
         }
     }
     keyUp(e) {
-        e.preventDefault();
         this.pressedKeys.set(e.code, false);
         for (const action in this.actions) {
             if (this.actions[action].hasKey(e.code)) {

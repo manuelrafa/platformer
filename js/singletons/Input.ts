@@ -47,7 +47,6 @@ const Input = new class Input {
 
 
     private keyDown (e: KeyboardEvent): void {
-        e.preventDefault();
         this.pressedKeys.set(e.code, true);
         for (const action in this.actions) {
             if (this.actions[action].hasKey(e.code)) {
@@ -56,7 +55,6 @@ const Input = new class Input {
         }
     }
     private keyUp (e: KeyboardEvent): void {
-        e.preventDefault();
         this.pressedKeys.set(e.code, false);
         for (const action in this.actions) {
             if (this.actions[action].hasKey(e.code)) {
