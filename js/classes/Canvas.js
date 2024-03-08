@@ -9,8 +9,13 @@ class Canvas {
             html.width = size.x;
             html.height = size.y;
         }
+        window.requestAnimationFrame(this.clear.bind(this));
     }
     draw(img, x, y) {
         this.context.drawImage(img, x, y);
+    }
+    clear() {
+        this.context.clearRect(0, 0, this.size.x, this.size.y);
+        window.requestAnimationFrame(this.clear.bind(this));
     }
 }

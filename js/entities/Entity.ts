@@ -1,17 +1,11 @@
 class Entity {
-    protected sprite: HTMLImageElement | null = null;
     protected alive: boolean = true;
-    protected position: Vector2 = new Vector2();
 
     constructor() {
         window.requestAnimationFrame(this.staticLoop.bind(this));
     }
 
-    private staticStart() {
-        this.alive = true;
-    }
-
-    private staticLoop() {
+    protected staticLoop() {
         if (this.alive) {
             this.loop();
         }
@@ -23,7 +17,7 @@ class Entity {
      * LLamado para inicializar la entidad.
      */
     protected start(): void {
-        this.staticStart();
+        this.alive = true;
     }
     /**
      * @override
@@ -31,15 +25,8 @@ class Entity {
      */
     protected loop(): void {}
 
-    protected move(movement: Vector2) {
-        this.position.x += Math.round(movement.x * Time.deltaTime);
-        this.position.y += Math.round(movement.y * Time.deltaTime);
-    }
-
     protected kill(): void {
         if (this.alive) this.alive = false;
     }
 
 }
-
-const a = new Entity();

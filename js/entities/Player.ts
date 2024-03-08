@@ -1,6 +1,15 @@
-class Player extends Entity {
+class Player extends CanvasEntity {
     private movDirection = new Vector2();
     private speed: number = 150;
+
+    constructor() {
+        super();
+        {
+            const img = new Image();
+            img.src = 'img/Player.png';
+            this.sprite = img;
+        }
+    }
 
 
     protected loop(): void {

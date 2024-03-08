@@ -14,10 +14,15 @@ class Canvas {
             html.height = size.y;
         }
 
-        
+        window.requestAnimationFrame(this.clear.bind(this));
     }
 
     draw(img: HTMLImageElement, x: number, y: number) : void {
         this.context.drawImage(img, x, y);
+    }
+
+    clear() {
+        this.context.clearRect(0, 0, this.size.x, this.size.y);
+        window.requestAnimationFrame(this.clear.bind(this));
     }
 }

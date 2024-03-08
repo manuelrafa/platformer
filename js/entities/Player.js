@@ -1,9 +1,14 @@
 "use strict";
-class Player extends Entity {
+class Player extends CanvasEntity {
     constructor() {
-        super(...arguments);
+        super();
         this.movDirection = new Vector2();
         this.speed = 150;
+        {
+            const img = new Image();
+            img.src = 'img/Player.png';
+            this.sprite = img;
+        }
     }
     loop() {
         this.handleMovement();
