@@ -4,6 +4,9 @@ class Entity {
         this.alive = true;
         window.requestAnimationFrame(this.staticLoop.bind(this));
     }
+    isAlive() {
+        return this.alive;
+    }
     staticLoop() {
         if (this.alive) {
             this.loop();

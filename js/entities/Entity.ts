@@ -5,6 +5,10 @@ class Entity {
         window.requestAnimationFrame(this.staticLoop.bind(this));
     }
 
+    public isAlive(): boolean {
+        return this.alive;
+    }
+
     protected staticLoop() {
         if (this.alive) {
             this.loop();

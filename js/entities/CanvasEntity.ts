@@ -4,6 +4,13 @@ class CanvasEntity extends Entity {
     protected zIndex: number = 0;
     protected position: Vector2 = new Vector2();
 
+    
+    public getPosition(): Vector2 {
+        return this.position.clone();
+    }
+
+
+
     protected staticLoop(): void {
         super.staticLoop();
         if (this.alive) {
@@ -14,7 +21,7 @@ class CanvasEntity extends Entity {
     private drawSelf() {
         if (!this.visible) return;
         if (this.sprite === null) return;
-        MainCanvas.draw(this.sprite, this.position.x, this.position.y);
+        MainCanvas.draw(this.sprite, this.position.x - this.sprite.width / 2, this.position.y - this.sprite.width / 2);
     }
 
     protected move(movement: Vector2) {

@@ -7,6 +7,9 @@ class CanvasEntity extends Entity {
         this.zIndex = 0;
         this.position = new Vector2();
     }
+    getPosition() {
+        return this.position.clone();
+    }
     staticLoop() {
         super.staticLoop();
         if (this.alive) {
@@ -18,7 +21,7 @@ class CanvasEntity extends Entity {
             return;
         if (this.sprite === null)
             return;
-        MainCanvas.draw(this.sprite, this.position.x, this.position.y);
+        MainCanvas.draw(this.sprite, this.position.x - this.sprite.width / 2, this.position.y - this.sprite.width / 2);
     }
     move(movement) {
         this.position.x += Math.round(movement.x * Time.deltaTime);
