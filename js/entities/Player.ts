@@ -1,6 +1,8 @@
-class Player extends CanvasEntity {
+class Player extends CanvasEntity implements ColliderEntity {
     private movDirection = new Vector2();
     private speed: number = 150;
+
+    collider: Collider;
 
     constructor() {
         super();
@@ -9,6 +11,7 @@ class Player extends CanvasEntity {
             img.src = 'img/Player.png';
             this.sprite = img;
         }
+        this.collider = new RectCollider(this, new Vector2(16, 32));
     }
 
 

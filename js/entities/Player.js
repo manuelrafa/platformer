@@ -9,6 +9,7 @@ class Player extends CanvasEntity {
             img.src = 'img/Player.png';
             this.sprite = img;
         }
+        this.collider = new RectCollider(this, new Vector2(16, 32));
     }
     loop() {
         this.handleMovement();
