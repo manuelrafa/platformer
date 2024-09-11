@@ -9,6 +9,11 @@ class CanvasEntity extends Entity {
         return this.position.clone();
     }
 
+    public setPosition(x: number, y: number) {
+        this.position.x = x;
+        this.position.y = y;
+    }
+
 
 
     protected staticLoop(): void {

@@ -9,10 +9,19 @@ class Player extends CanvasEntity {
             img.src = 'img/Player.png';
             this.sprite = img;
         }
-        this.collider = new RectCollider(this, new Vector2(16, 32));
+        const colVtx = [
+            new Vector2(-8, -16),
+            new Vector2(8, -16),
+            new Vector2(8, 16),
+            new Vector2(-8, 16)
+        ];
+        this.collider = new PolygonCollider(this, colVtx);
+        //this.collider = new RectCollider(this, new Vector2(16, 32));
     }
     loop() {
         this.handleMovement();
+        this.collider.isColliding();
+        //console.log(this.collider.isColliding());
     }
     handleMovement() {
         if (Input.isActionPressed('left')) {
@@ -25,5 +34,8 @@ class Player extends CanvasEntity {
             this.movDirection.x = 0;
         }
         this.move(Vector2.mul(this.movDirection, this.speed));
+    }
+    escapeFromCollider(mtv) {
+        this.position.add(mtv);
     }
 }

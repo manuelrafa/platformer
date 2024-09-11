@@ -11,12 +11,21 @@ class Player extends CanvasEntity implements ColliderEntity {
             img.src = 'img/Player.png';
             this.sprite = img;
         }
-        this.collider = new RectCollider(this, new Vector2(16, 32));
+        const colVtx = [
+            new Vector2(-8, -16),
+            new Vector2(8, -16),
+            new Vector2(8, 16),
+            new Vector2(-8, 16)
+        ];
+        this.collider = new PolygonCollider(this, colVtx);
+        //this.collider = new RectCollider(this, new Vector2(16, 32));
     }
 
 
     protected loop(): void {
         this.handleMovement();
+        this.collider.isColliding();
+        //console.log(this.collider.isColliding());
     }
 
     private handleMovement() {
@@ -31,5 +40,9 @@ class Player extends CanvasEntity implements ColliderEntity {
         }
 
         this.move(Vector2.mul(this.movDirection, this.speed));
+    }
+
+    escapeFromCollider(mtv: Vector2): void {
+        this.position.add(mtv);
     }
 }

@@ -10,6 +10,10 @@ class CanvasEntity extends Entity {
     getPosition() {
         return this.position.clone();
     }
+    setPosition(x, y) {
+        this.position.x = x;
+        this.position.y = y;
+    }
     staticLoop() {
         super.staticLoop();
         if (this.alive) {

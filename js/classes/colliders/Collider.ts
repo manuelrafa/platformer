@@ -28,12 +28,17 @@ abstract class Collider {
             for (let i = 0; i < colList.length; i++) {
                 const col = colList[i];
                 if (col === this) continue;
-                if (this.isCollidingWith(col)) list.push(col);
+                const mtv = this.isCollidingWith(col);
+                if (mtv && typeof(mtv) == 'object') {
+                    list.push(col);
+                    this.parent.escapeFromCollider(mtv);
+                }
+
             }
             return list;
         }
         return [];
     }
 
-    public abstract isCollidingWith(other: Collider): boolean;
+    public abstract isCollidingWith(other: Collider): boolean | Vector2;
 }

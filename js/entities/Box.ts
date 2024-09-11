@@ -6,6 +6,20 @@ class Box extends CanvasEntity implements ColliderEntity {
         this.sprite = new Image();
         this.sprite.src = 'img/AguaTile.png';
 
-        this.collider = new RectCollider(this, new Vector2(32, 32));
+        const colVtx = [
+            new Vector2(-16, -16),
+            new Vector2(16, -16),
+            new Vector2(16, 16),
+            new Vector2(-16, 16)
+        ];
+        this.collider = new PolygonCollider(this, colVtx);
+    }
+
+    protected loop(): void {
+        //this.collider.isColliding();
+    }
+
+    escapeFromCollider(mtv: Vector2): void {
+        this.position.add(mtv);
     }
 }

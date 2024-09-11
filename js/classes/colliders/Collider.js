@@ -23,8 +23,11 @@ class Collider {
                 const col = colList[i];
                 if (col === this)
                     continue;
-                if (this.isCollidingWith(col))
+                const mtv = this.isCollidingWith(col);
+                if (mtv && typeof (mtv) == 'object') {
                     list.push(col);
+                    this.parent.escapeFromCollider(mtv);
+                }
             }
             return list;
         }

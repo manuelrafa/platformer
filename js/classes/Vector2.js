@@ -44,15 +44,17 @@ class Vector2 {
      * Devuelve la norma (magnitud) de este vector.
      */
     length() {
-        let len = Math.pow(this.x, 2) + Math.pow(this.y, 2);
-        return Math.sqrt(len);
+        return Math.sqrt(this.squaredLength());
+    }
+    squaredLength() {
+        return Math.pow(this.x, 2) + Math.pow(this.y, 2);
     }
     /**
      * Devuelve la distancia entre este vector y _v2_.
      */
     distanceTo(v2) {
-        v2.sub(this);
-        return Math.abs(v2.length());
+        const vdis = Vector2.sub(v2, this);
+        return Math.abs(vdis.length());
     }
     /**
      * Devuelve una copia de este vector.
@@ -62,6 +64,14 @@ class Vector2 {
     }
     normalized() {
         return Vector2.div(this, this.length());
+    }
+    projectOn(v2) {
+        const dot = this.dot(v2);
+        const sqlen = v2.squaredLength();
+        return Vector2.mul(v2, dot / sqlen);
+    }
+    normalVector() {
+        return new Vector2(this.y, -this.x);
     }
     /* Operaciones estáticas (no modifican al propio vector) ======================================== */
     /**
