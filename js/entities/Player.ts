@@ -1,6 +1,7 @@
 class Player extends CanvasEntity implements ColliderEntity {
     private movDirection = new Vector2();
     private speed: number = 150;
+    private jumpSpeed: number = 300;
 
     collider: Collider;
 
@@ -25,7 +26,7 @@ class Player extends CanvasEntity implements ColliderEntity {
     protected loop(): void {
         this.handleMovement();
         this.collider.isColliding();
-        //console.log(this.collider.isColliding());
+        //console.log(this.collider.isOnFloor());
     }
 
     private handleMovement() {
@@ -39,7 +40,19 @@ class Player extends CanvasEntity implements ColliderEntity {
             this.movDirection.x = 0;
         }
 
-        this.move(Vector2.mul(this.movDirection, this.speed));
+        if (!this.collider.isOnFloor()) {
+            this.movDirection.y += PhysicsServer.gravity;
+        } else {
+            this.movDirection.y = 0;
+            if (Input.isActionPressed('jump')) {
+               this.movDirection.y = -this.jumpSpeed;
+           }
+        }
+
+        this.move(new Vector2(this.movDirection.x * this.speed, this.movDirection.y));
+
+        //console.log(this.movDirection);
+        
     }
 
     escapeFromCollider(mtv: Vector2): void {

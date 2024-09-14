@@ -1,6 +1,7 @@
 "use strict";
 const PhysicsServer = new class PhysicsServer {
     constructor() {
+        this.gravity = 10;
         this.colliderList = [];
     }
     getColliderList() {

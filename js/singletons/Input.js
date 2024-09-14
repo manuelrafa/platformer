@@ -4,7 +4,8 @@ const Input = new class Input {
         this.pressedKeys = new Map();
         this.actions = {
             left: new InputAction('KeyA'),
-            right: new InputAction('KeyD')
+            right: new InputAction('KeyD'),
+            jump: new InputAction('KeyW')
         };
         window.onkeydown = this.keyDown.bind(this);
         window.onkeyup = this.keyUp.bind(this);

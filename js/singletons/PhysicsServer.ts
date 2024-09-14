@@ -1,4 +1,6 @@
 const PhysicsServer = new class PhysicsServer {
+    public gravity: number = 10;
+
     private colliderList: Array<Collider> = [];
 
     public getColliderList(): Array<Collider> {

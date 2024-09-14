@@ -6,7 +6,8 @@ const Input = new class Input {
     private pressedKeys = new Map<string, boolean>();
     public actions: ActionList = {
         left: new InputAction('KeyA'),
-        right: new InputAction('KeyD')
+        right: new InputAction('KeyD'),
+        jump: new InputAction('KeyW')
     };
 
     constructor() {
