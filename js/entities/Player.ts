@@ -7,19 +7,8 @@ class Player extends CanvasEntity implements ColliderEntity {
 
     constructor() {
         super();
-        {
-            const img = new Image();
-            img.src = 'img/Player.png';
-            this.sprite = img;
-        }
-        const colVtx = [
-            new Vector2(-8, -16),
-            new Vector2(8, -16),
-            new Vector2(8, 16),
-            new Vector2(-8, 16)
-        ];
-        this.collider = new PolygonCollider(this, colVtx);
-        //this.collider = new RectCollider(this, new Vector2(16, 32));
+        this.setImage('img/Player.png');
+        this.collider = new RectCollider(this, new Vector2(16, 32));
     }
 
 
@@ -43,7 +32,9 @@ class Player extends CanvasEntity implements ColliderEntity {
         if (!this.collider.isOnFloor()) {
             this.movDirection.y += PhysicsServer.gravity;
         } else {
-            this.movDirection.y = 0;
+            if (this.movDirection.y > 0) {
+                this.movDirection.y = 0;
+            }
             if (Input.isActionPressed('jump')) {
                this.movDirection.y = -this.jumpSpeed;
            }

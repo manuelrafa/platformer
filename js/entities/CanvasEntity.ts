@@ -15,6 +15,11 @@ class CanvasEntity extends Entity {
     }
 
 
+    protected setImage(path: string) {
+        this.sprite = new Image();
+        this.sprite.src = path;
+    }
+
 
     protected staticLoop(): void {
         super.staticLoop();

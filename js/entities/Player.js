@@ -5,19 +5,8 @@ class Player extends CanvasEntity {
         this.movDirection = new Vector2();
         this.speed = 150;
         this.jumpSpeed = 300;
-        {
-            const img = new Image();
-            img.src = 'img/Player.png';
-            this.sprite = img;
-        }
-        const colVtx = [
-            new Vector2(-8, -16),
-            new Vector2(8, -16),
-            new Vector2(8, 16),
-            new Vector2(-8, 16)
-        ];
-        this.collider = new PolygonCollider(this, colVtx);
-        //this.collider = new RectCollider(this, new Vector2(16, 32));
+        this.setImage('img/Player.png');
+        this.collider = new RectCollider(this, new Vector2(16, 32));
     }
     loop() {
         this.handleMovement();
@@ -38,7 +27,9 @@ class Player extends CanvasEntity {
             this.movDirection.y += PhysicsServer.gravity;
         }
         else {
-            this.movDirection.y = 0;
+            if (this.movDirection.y > 0) {
+                this.movDirection.y = 0;
+            }
             if (Input.isActionPressed('jump')) {
                 this.movDirection.y = -this.jumpSpeed;
             }

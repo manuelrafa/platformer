@@ -14,6 +14,10 @@ class CanvasEntity extends Entity {
         this.position.x = x;
         this.position.y = y;
     }
+    setImage(path) {
+        this.sprite = new Image();
+        this.sprite.src = path;
+    }
     staticLoop() {
         super.staticLoop();
         if (this.alive) {

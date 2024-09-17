@@ -2,15 +2,8 @@
 class Box extends CanvasEntity {
     constructor() {
         super();
-        this.sprite = new Image();
-        this.sprite.src = 'img/AguaTile.png';
-        const colVtx = [
-            new Vector2(-16, -16),
-            new Vector2(16, -16),
-            new Vector2(16, 16),
-            new Vector2(-16, 16)
-        ];
-        this.collider = new PolygonCollider(this, colVtx);
+        this.setImage('img/AguaTile.png');
+        this.collider = new RectCollider(this, new Vector2(32, 32));
     }
     loop() {
         //this.collider.isColliding();
